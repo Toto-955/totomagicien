@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Toto Magicien - Maintenance</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+    /* Remplace 'background.jpg' par le chemin de ton image */
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: 'Montserrat', sans-serif;
+      color: #fff;
+      background: url(/assets/banniere\ toto.png) no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Overlay sombre pour rendre le texte lisible */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.65);
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+      padding: 40px 30px;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.7);
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5em;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    .logo {
+      font-weight: 900;
+      font-size: 4rem;
+      color: #FFD700;
+      margin-bottom: 1em;
+      user-select: none;
+      text-transform: uppercase;
+      text-shadow: 0 0 8px #FFD700;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin-bottom: 1.5em;
+      color: #ddd;
+    }
+
+    footer {
+      font-size: 0.9rem;
+      opacity: 0.6;
+      user-select: none;
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+      }
+      .logo {
+        font-size: 2.8rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">Toto Magicien</div>
+    <h1>Site en maintenance</h1>
+    <p>
+      Nous préparons la meilleure expérience de pronostics sportifs.<br />
+      Merci de votre patience, nous serons bientôt de retour.
+    </p>
+    <footer>© 2025 Toto Magicien - Tous droits réservés</footer>
+  </div>
+</body>
+</html>

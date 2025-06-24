@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Merci pour ton achat – TotoMagicien</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --vert-gazon: #3b945e;
+      --rose-doux: #f78fb3;
+      --bg-clair: #f9f9f9;
+      --texte-fonce: #1e1e1e;
+      --ombre: rgba(0, 0, 0, 0.08);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--bg-clair);
+      color: var(--texte-fonce);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: white;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 6px var(--ombre);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header .logo img {
+      height: 50px;
+    }
+
+    main {
+      flex: 1;
+      text-align: center;
+      padding: 3rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    main h1 {
+      font-size: 2.5rem;
+      color: var(--vert-gazon);
+      margin-bottom: 1rem;
+    }
+
+    main p {
+      font-size: 1.2rem;
+      color: #444;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn-download {
+      display: inline-block;
+      background-color: var(--rose-doux);
+      color: white;
+      padding: 1rem 2.5rem;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-download:hover {
+      background-color: var(--vert-gazon);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: #fff;
+      box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05);
+      font-weight: 600;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <a href="index.html">
+        <img src="/assets/logo_toto-removebg-preview.png" alt="Logo TotoMagicien">
+      </a>
+    </div>
+    <a href="index.html" style="font-weight:600; text-decoration:none; color:#333;">Retour à l'accueil</a>
+  </header>
+
+  <main>
+    <h1>🎉 Merci pour ton achat !</h1>
+    <p>Tu peux dès maintenant télécharger ton eBook PDF<br><strong>🧠 Dans la Tête d’un Bookmaker – Gagner Sans Tricher</strong></p>
+    
+    <a href="/assets/🧠 Dans la Tête d’un Bookmaker – Gagner Sans Tricher.pdf" class="btn-download" download>Télécharger le PDF</a>
+  </main>
+
+  <footer>
+    © 2025 TotoMagicien™ – Les vrais gagnent avec la tête.
+  </footer>
+</body>
+</html>

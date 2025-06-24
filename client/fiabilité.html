@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <link rel="icon" href="/assets/logo_toto-removebg-preview.png" type="image/png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TotoMagicienTM - Fiabilité & Témoignages</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --vert-gazon: #3b945e;
+            --rose-doux: #f78fb3;
+            --bg-clair: #f2f2f2;
+            --texte-fonce: #1e1e1e;
+            --gris-fonce: #555;
+            --ombre: rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-clair);
+            color: var(--texte-fonce);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 6px var(--ombre);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        header .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        header .logo img {
+            height: 40px;
+        }
+
+        header .logo h1 {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        header .logo h1 span {
+            color: var(--vert-gazon);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--texte-fonce);
+            font-weight: 600;
+            margin-left: 20px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--rose-doux);
+        }
+
+        main {
+            max-width: 900px;
+            margin: 3rem auto 5rem auto;
+            padding: 0 1rem;
+            text-align: center;
+        }
+
+        main h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        main p.subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            color: var(--gris-fonce);
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-box {
+            background: white;
+            padding: 2rem 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px var(--ombre);
+            width: 180px;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-7px);
+        }
+
+        .stat-box strong {
+            display: block;
+            font-size: 2.8rem;
+            color: var(--vert-gazon);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-box span {
+            font-weight: 600;
+            color: var(--gris-fonce);
+        }
+
+        .btn-preuve {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 18px;
+            background-color: var(--vert-gazon);
+            color: white;
+            border-radius: 20px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: background 0.3s ease;
+        }
+
+        .btn-preuve:hover {
+            background-color: var(--rose-doux);
+        }
+
+        .temoignages {
+            margin-bottom: 4rem;
+            text-align: left;
+        }
+
+        .temoignages h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            color: var(--vert-gazon);
+        }
+
+        blockquote {
+            background: white;
+            padding: 1.8rem 2rem;
+            margin-bottom: 1.5rem;
+            border-left: 6px solid var(--rose-doux);
+            font-style: italic;
+            box-shadow: 0 6px 15px var(--ombre);
+            border-radius: 8px;
+        }
+
+        blockquote strong {
+            display: block;
+            margin-top: 1rem;
+            font-weight: 700;
+            color: var(--texte-fonce);
+            font-style: normal;
+        }
+
+        .methode {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px var(--ombre);
+            margin-bottom: 4rem;
+            text-align: left;
+        }
+
+        .methode h2 {
+            color: var(--vert-gazon);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .methode p {
+            font-size: 1.1rem;
+            color: var(--gris-fonce);
+            line-height: 1.7;
+        }
+
+        .faq {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px var(--ombre);
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto 4rem auto;
+        }
+
+        .faq h2 {
+            color: var(--vert-gazon);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .faq p {
+            margin-bottom: 1.3rem;
+            font-weight: 600;
+            color: var(--rose-doux);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .faq p+p {
+            font-weight: normal;
+            color: var(--gris-fonce);
+            margin-top: -1rem;
+            margin-left: 1rem;
+        }
+
+        .btn-cta {
+            background-color: var(--rose-doux);
+            color: white;
+            border: none;
+            padding: 1rem 3rem;
+            font-size: 1.25rem;
+            border-radius: 40px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-cta:hover {
+            background-color: var(--vert-gazon);
+        }
+
+        @media (max-width: 700px) {
+            .stats {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .stat-box {
+                width: 90%;
+                max-width: 300px;
+            }
+
+            .temoignages {
+                text-align: center;
+            }
+
+            .methode,
+            .faq {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="/assets/logo_toto-removebg-preview.png" alt="Logo" style="width: 110px; height:auto;">
+            </a>
+        </div>
+        <nav>
+            <a href="index.html">Accueil</a>
+            <a href="#temoignages">Témoignages</a>
+            <a href="methode.html">Méthode</a>
+            <a href="faqs.html">FAQ</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Fiabilité & Témoignages</h1>
+        <p class="subtitle">Ici, on ne vend pas du rêve, on forge la victoire.</p>
+
+        <!-- Statistiques -->
+        <section class="stats" aria-label="Statistiques clés">
+            <div class="stat-box" role="region" aria-labelledby="stat1-title">
+                <strong>75%</strong>
+                <span id="stat1-title">Pronostics gagnants</span>
+            </div>
+            <div class="stat-box" role="region" aria-labelledby="stat2-title">
+                <strong>+500</strong>
+                <span id="stat2-title">Abonnés actifs</span>
+            </div>
+            <div class="stat-box" role="region" aria-labelledby="preuve-title">
+                <strong>📸</strong>
+                <span id="preuve-title">Preuves de gains réels</span>
+                <a href="preuve.html" class="btn-preuve">Voir plus</a>
+            </div>
+        </section>
+
+        <!-- Témoignages -->
+        <section id="temoignages" class="temoignages" aria-label="Témoignages clients">
+            <h2>Ils nous font confiance</h2>
+            <blockquote>
+                “Depuis que je suis chez Toto, je fais +600€/mois. Franchement lourd !”
+                <strong>– Walid B.</strong>
+            </blockquote>
+            <blockquote>
+                “Les analyses sont propres, pas du blabla. C’est carré.”
+                <strong>– Sarah K.</strong>
+            </blockquote>
+            <blockquote>
+                “Le VIP vaut grave le coup. Groupe Telegram 🔥🔥🔥”
+                <strong>– Mehdi L.</strong>
+            </blockquote>
+        </section>
+    </main>
+
+    <footer style="text-align:center; padding: 2rem 1rem; background: #fff; box-shadow: 0 -2px 6px rgba(0,0,0,0.05); font-weight: 600; color: #888;">
+        © 2025 TotoMagicienTM. Tous droits réservés. Propulsé par la street & le skill.
+    </footer>
+   
+
+</body>
+
+</html>

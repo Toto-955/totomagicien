@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link rel="icon" href="/assets/logo_toto-removebg-preview.png" type="image/png" />
+
+<meta charset="UTF-8">
+<title>Contact | TotoMagicienTM</title>
+<style>
+body {
+margin: 0;
+font-family: 'Segoe UI', sans-serif;
+background: linear-gradient(135deg, #2c3e50, #4b0082);
+color: white;
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 2rem;
+}
+header {
+width: 100%;
+padding: 1rem 2rem;
+background-color: rgba(0, 0, 0, 0.3);
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+h1 {
+font-size: 2.5rem;
+margin-bottom: 0.5rem;
+}
+p {
+font-size: 1.1rem;
+margin-bottom: 2rem;
+}
+
+form {
+background-color: rgba(255, 255, 255, 0.1);
+padding: 2rem;
+border-radius: 12px;
+box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+width: 100%;
+max-width: 600px;
+display: flex;
+flex-direction: column;
+gap: 1rem;
+}
+input,
+textarea {
+padding: 1rem;
+border: none;
+border-radius: 8px;
+font-size: 1rem;
+}
+input:focus,
+textarea:focus {
+outline: 2px solid #8a2be2;
+}
+button {
+background-color: #8a2be2;
+color: white;
+padding: 1rem;
+border: none;
+border-radius: 8px;
+font-size: 1.1rem;
+cursor: pointer;
+transition: background 0.3s ease;
+}
+button:hover {
+background-color: #a569bd;
+}
+footer {
+margin-top: 3rem;
+font-size: 0.9rem;
+opacity: 0.7;
+}
+</style>
+</head>
+
+<body>
+<header>
+<div><a href="index.html" style="color:white; text-decoration:none;
+font-weight:bold;">TotoMagicienTM</a></div>
+<nav>
+</nav>
+</header>
+<h1>Contacte l'équipe TotoMagicienTM 💬</h1>
+<p>Une question, une remarque ou un projet en tête ? Écris-nous !</p>
+<form action="https://formsubmit.co/pronototo@totomagicien.com" method="POST">
+  <input type="text" name="name" placeholder="Ton nom ou pseudo" required />
+  <input type="email" name="email" placeholder="Ton adresse email" required />
+  <input type="text" name="subject" placeholder="Objet du message" required />
+  <textarea name="message" rows="6" placeholder="Ton message ici..." required></textarea>
+
+  <!-- Champ invisible anti-bot -->
+  <input type="text" name="_honey" style="display:none">
+
+  <!-- Redirection après envoi -->
+  <input type="hidden" name="_next" value="https://totomagicien.com/merci.html">
+
+  <!-- Désactiver le captcha Formsubmit (facultatif) -->
+  <input type="hidden" name="_captcha" value="false">
+
+  <button type="submit">Envoyer 💌</button>
+</form>
+
+
+<footer>
+© 2025 TotoMagicienTM. Tous droits réservés.
+</footer>
+</body>
+</html>

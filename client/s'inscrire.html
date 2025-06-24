@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Toto Magicien - Inscription</title>
+  <link rel="icon" href="assets/favicon.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --vert-magie: #2ecc71;
+      --violet-magie: #9b59b6;
+      --bg-clair: #f9f9f9;
+      --texte-fonce: #2c3e50;
+    }
+    body {
+      margin: 0;
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--bg-clair);
+      color: var(--texte-fonce);
+      max-width: 500px;
+      margin: auto;
+      padding: 2rem 1rem;
+    }
+    header {
+      background-color: white;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      border-radius: 8px;
+    }
+    header h1 {
+      color: var(--violet-magie);
+      font-size: 1.8rem;
+      margin: 0;
+    }
+    header a {
+      color: var(--vert-magie);
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .container {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: var(--violet-magie);
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    input, select {
+      padding: 0.8rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .input-password {
+      position: relative;
+    }
+    .input-password input {
+      padding-right: 2.5rem;
+    }
+    .toggle-password {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.3rem;
+      color: #888;
+    }
+    .strength-bar {
+      height: 8px;
+      margin-top: 8px;
+      background: #eee;
+      border-radius: 5px;
+      overflow: hidden;
+      display: none;
+    }
+    .strength-level {
+      height: 100%;
+      width: 0%;
+      transition: width 0.3s;
+    }
+    .weak { background: red; }
+    .medium { background: orange; }
+    .strong { background: green; }
+    .strength-text {
+      margin-top: 8px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+    }
+    button {
+      background: var(--vert-magie);
+      color: white;
+      border: none;
+      padding: 0.8rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: var(--violet-magie);
+    }
+    .footer-link {
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .footer-link a {
+      color: var(--violet-magie);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    #errorMsg {
+      color: red;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>TotoMagicien™</h1>
+    <a href="index.html">← Retour</a>
+  </header>
+  <div class="container">
+    <h2>Inscription par Email</h2>
+
+    <p style="color: #9b59b6; font-weight: 500; font-size: 0.95rem; text-align: center;">
+      🔔 Le mail de vérification peut arriver dans les spams. Pense à vérifier !
+    </p>
+
+    <form id="inscription-form" autocomplete="off">
+      <input type="text" id="pseudo" placeholder="Ton pseudo" required autocomplete="username" />
+      <input type="email" id="email" placeholder="Ton email" required autocomplete="email" />
+      <div class="input-password">
+        <input type="password" id="motdepasse" placeholder="Mot de passe (6+ caractères)" required autocomplete="new-password" />
+        <button type="button" class="toggle-password" aria-label="Afficher/Masquer le mot de passe" onclick="togglePassword()">👁️</button>
+        <div class="strength-bar" id="strengthBar">
+          <div class="strength-level" id="strengthLevel"></div>
+        </div>
+        <div class="strength-text" id="strengthText" style="display:none;">
+          <span id="strengthIcon">🟥</span>
+          <span id="strengthLabel">Mot de passe</span>
+        </div>
+      </div>
+
+      <label style="display:flex; align-items:center; gap:4px; font-weight:600; cursor:pointer;">
+        <input type="checkbox" id="terms" required />
+        J'accepte les <a href="conditions.html" target="_blank" style="color: var(--violet-magie); text-decoration: underline;">Conditions Générales</a>
+      </label>
+
+      <button type="submit">S'inscrire</button>
+    </form>
+
+    <p id="errorMsg"></p>
+    <div class="footer-link">Déjà inscrit ? <a href="connexion.html">Connecte-toi</a></div>
+  </div>
+
+  <!-- Firebase JS SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+  <script>
+    // Config Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyBfx9vsqKsjg6aj86BGi0gy0DOHyqqTViU",
+      authDomain: "totomagicien-b6785.firebaseapp.com",
+      projectId: "totomagicien-b6785",
+      storageBucket: "totomagicien-b6785.appspot.com",
+      messagingSenderId: "768549403829",
+      appId: "1:768549403829:web:8529a252df2fa5795ed2fc"
+    };
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    // Elements DOM
+    const form = document.getElementById('inscription-form');
+    const errorMsg = document.getElementById('errorMsg');
+    const pseudoInput = document.getElementById('pseudo');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('motdepasse');
+    const termsCheckbox = document.getElementById('terms');
+
+    // Barre de force mot de passe
+    const strengthBar = document.getElementById('strengthBar');
+    const strengthLevel = document.getElementById('strengthLevel');
+    const strengthText = document.getElementById('strengthText');
+    const strengthLabel = document.getElementById('strengthLabel');
+    const strengthIcon = document.getElementById('strengthIcon');
+
+    passwordInput.addEventListener("input", () => {
+      const val = passwordInput.value;
+      strengthBar.style.display = val ? "block" : "none";
+      strengthText.style.display = val ? "flex" : "none";
+
+      let strength = 0;
+      if (val.length >= 6) strength++;
+      if (/[A-Z]/.test(val)) strength++;
+      if (/[0-9]/.test(val)) strength++;
+      if (/[^A-Za-z0-9]/.test(val)) strength++;
+
+      if (strength <= 1) {
+        strengthLevel.style.width = "25%";
+        strengthLevel.className = "strength-level weak";
+        strengthLabel.textContent = "Faible";
+        strengthIcon.textContent = "🟥";
+      } else if (strength === 2 || strength === 3) {
+        strengthLevel.style.width = "60%";
+        strengthLevel.className = "strength-level medium";
+        strengthLabel.textContent = "Moyen";
+        strengthIcon.textContent = "🟧";
+      } else {
+        strengthLevel.style.width = "100%";
+        strengthLevel.className = "strength-level strong";
+        strengthLabel.textContent = "Fort";
+        strengthIcon.textContent = "🟩";
+      }
+    });
+
+    // Toggle visibilité mot de passe
+    function togglePassword() {
+      if(passwordInput.type === "password") {
+        passwordInput.type = "text";
+      } else {
+        passwordInput.type = "password";
+      }
+    }
+
+    // Soumission formulaire inscription
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorMsg.textContent = '';
+
+      const pseudo = pseudoInput.value.trim();
+      const email = emailInput.value.trim().toLowerCase();
+      const password = passwordInput.value;
+      const termsAccepted = termsCheckbox.checked;
+
+      if (!termsAccepted) {
+        errorMsg.textContent = "Vous devez accepter les Conditions Générales.";
+        return;
+      }
+      if (password.length < 6) {
+        errorMsg.textContent = "Le mot de passe doit contenir au moins 6 caractères.";
+        return;
+      }
+
+      try {
+        // Création compte Firebase
+        const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+        const user = userCredential.user;
+
+        // Envoi mail de vérification
+        await user.sendEmailVerification();
+
+        // Stocker le pseudo en Firestore
+        await db.collection("utilisateurs").doc(user.uid).set({
+          pseudo: pseudo,
+          email: email,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+
+        // Stocker le pseudo en sessionStorage pour index.html
+        sessionStorage.setItem('pseudo', pseudo);
+
+        alert("Inscription réussie ! Un email de vérification a été envoyé. Merci de vérifier votre boîte mail.");
+        window.location.href = "index.html";
+
+      } catch(error) {
+        if (error.code === "auth/email-already-in-use") {
+          errorMsg.textContent = "Cet email est déjà utilisé.";
+        } else if (error.code === "auth/invalid-email") {
+          errorMsg.textContent = "Email invalide.";
+        } else if (error.code === "auth/weak-password") {
+          errorMsg.textContent = "Le mot de passe est trop faible.";
+        } else {
+          errorMsg.textContent = "Erreur : " + error.message;
+        }
+      }
+    });
+  </script>
+</body>
+</html>

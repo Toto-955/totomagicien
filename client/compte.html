@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mon Compte - TotoMagicien</title>
+  <link rel="icon" href="assets/favicon.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Variables couleurs */
+    :root {
+      --violet-magie: #7a3ed8;
+      --violet-clair: #b18aff;
+      --vert-magie: #2ecc71;
+      --vert-fonce: #27ae60;
+      --gris-clair: #f5f7fa;
+      --gris-medium: #cbd5e1;
+      --gris-fonce: #344054;
+      --rose-doux: #f78fb3;
+      --ombre: rgba(0, 0, 0, 0.08);
+      --font-family: 'Outfit', sans-serif;
+    }
+
+    /* Reset et base */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: var(--font-family);
+      background: var(--gris-clair);
+      color: var(--gris-fonce);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      max-width: 650px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px var(--ombre);
+      margin-bottom: 2rem;
+    }
+
+    header h1 {
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: var(--violet-magie);
+      margin: 0;
+    }
+
+    button.btn-retour {
+      background-color: var(--violet-magie);
+      color: white;
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(122, 62, 216, 0.3);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    button.btn-retour:hover {
+      background-color: var(--violet-clair);
+      box-shadow: 0 6px 15px rgba(177, 138, 255, 0.5);
+    }
+
+    /* Section */
+    section {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem 2.5rem;
+      box-shadow: 0 10px 30px var(--ombre);
+      margin-bottom: 2.5rem;
+    }
+
+    section h2 {
+      font-weight: 700;
+      font-size: 1.6rem;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      color: var(--violet-magie);
+      border-bottom: 3px solid var(--rose-doux);
+      padding-bottom: 0.4rem;
+    }
+
+    /* Info rows */
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--gris-medium);
+      font-size: 1.05rem;
+    }
+    .info-label {
+      font-weight: 600;
+      color: var(--rose-doux);
+      min-width: 120px;
+    }
+
+    /* Password field */
+    .password-field {
+      position: relative;
+      margin-top: 1.5rem;
+      max-width: 320px;
+    }
+    .password-field input {
+      width: 100%;
+      font-size: 1rem;
+      padding: 0.75rem 2.5rem 0.75rem 1rem;
+      border-radius: 12px;
+      border: 2px solid var(--gris-medium);
+      transition: border-color 0.3s ease;
+      background: #fafafa;
+      color: var(--gris-fonce);
+      user-select: none;
+    }
+    .password-field input:focus {
+      outline: none;
+      border-color: var(--vert-magie);
+      background: white;
+    }
+    .toggle-password {
+      position: absolute;
+      top: 50%;
+      right: 14px;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.3rem;
+      color: var(--gris-medium);
+      transition: color 0.3s ease;
+    }
+    .toggle-password:hover {
+      color: var(--vert-fonce);
+    }
+
+    /* Bouton changer mot de passe */
+    button.change-pass-btn {
+      margin-top: 1.7rem;
+      background: var(--vert-magie);
+      border: none;
+      padding: 0.75rem 1.8rem;
+      color: white;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(46, 204, 113, 0.5);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+    }
+    button.change-pass-btn:hover {
+      background: var(--vert-fonce);
+      box-shadow: 0 7px 20px rgba(39, 174, 96, 0.7);
+    }
+
+    /* Historique paiements */
+    .history-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      max-height: 280px;
+      overflow-y: auto;
+      border-radius: 12px;
+      border: 1px solid var(--gris-medium);
+      box-shadow: inset 0 0 6px rgba(0,0,0,0.05);
+    }
+    .history-list li {
+      padding: 1rem 1.2rem;
+      border-bottom: 1px solid var(--gris-medium);
+      display: flex;
+      justify-content: space-between;
+      font-size: 1rem;
+      color: var(--gris-fonce);
+      font-weight: 600;
+      background: white;
+      transition: background-color 0.2s ease;
+      cursor: default;
+    }
+    .history-list li:last-child {
+      border-bottom: none;
+    }
+    .history-list li:hover {
+      background-color: var(--gris-clair);
+    }
+
+    .no-history {
+      text-align: center;
+      color: #999;
+      font-style: italic;
+      padding: 1.5rem 0;
+      font-size: 1rem;
+      user-select: none;
+    }
+
+    /* Scrollbar custom pour historique */
+    .history-list::-webkit-scrollbar {
+      width: 8px;
+    }
+    .history-list::-webkit-scrollbar-thumb {
+      background-color: var(--violet-clair);
+      border-radius: 4px;
+    }
+    .history-list::-webkit-scrollbar-track {
+      background: #eee;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      body {
+        padding: 1.5rem 1rem 2rem;
+      }
+      section {
+        padding: 1.5rem 1.5rem;
+      }
+      .password-field {
+        max-width: 100%;
+      }
+      button.btn-retour {
+        font-size: 0.9rem;
+        padding: 0.45rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Mon Compte</h1>
+  <button class="btn-retour" id="btnRetour" aria-label="Retour à l'accueil">← Retour</button>
+</header>
+
+<section id="user-info-section">
+  <h2>Informations du compte</h2>
+  <div class="info-row">
+    <div class="info-label">Pseudo :</div>
+    <div id="user-pseudo">Chargement...</div>
+  </div>
+  <div class="info-row">
+    <div class="info-label">Email :</div>
+    <div id="user-email">Chargement...</div>
+  </div>
+  <div class="info-row">
+    <div class="info-label">Date d'inscription :</div>
+    <div id="user-created">Chargement...</div>
+  </div>
+
+  <div class="password-field">
+    <label for="passwordInput" style="font-weight:600; margin-bottom:0.3rem; display:block;">Mot de passe :</label>
+    <input type="password" id="passwordInput" readonly value="********" aria-describedby="togglePasswordBtn" />
+    <button type="button" class="toggle-password" id="togglePasswordBtn" title="Afficher / Masquer le mot de passe" aria-label="Afficher ou masquer le mot de passe">👁️</button>
+  </div>
+
+  <button class="change-pass-btn" id="changePassBtn">Changer le mot de passe</button>
+</section>
+
+<section id="payment-history-section">
+  <h2>Historique des paiements</h2>
+  <ul class="history-list" id="historyList"></ul>
+  <p class="no-history" id="noHistoryMsg" style="display:none;">Aucun abonnement trouvé.</p>
+</section>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyBfx9vsqKsjg6aj86BGi0gy0DOHyqqTViU",
+    authDomain: "totomagicien-b6785.firebaseapp.com",
+    projectId: "totomagicien-b6785",
+    storageBucket: "totomagicien-b6785.appspot.com",
+    messagingSenderId: "768549403829",
+    appId: "1:768549403829:web:8529a252df2fa5795ed2fc"
+  };
+  firebase.initializeApp(firebaseConfig);
+
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+
+  document.getElementById("btnRetour").addEventListener("click", () => {
+    window.location.href = "index.html";
+  });
+
+  const userPseudoElem = document.getElementById("user-pseudo");
+  const userEmailElem = document.getElementById("user-email");
+  const userCreatedElem = document.getElementById("user-created");
+  const passwordInput = document.getElementById("passwordInput");
+  const togglePasswordBtn = document.getElementById("togglePasswordBtn");
+  const changePassBtn = document.getElementById("changePassBtn");
+  const historyList = document.getElementById("historyList");
+  const noHistoryMsg = document.getElementById("noHistoryMsg");
+
+  let showPassword = false;
+
+  togglePasswordBtn.addEventListener("click", () => {
+    showPassword = !showPassword;
+    if (showPassword) {
+      passwordInput.type = "text";
+      passwordInput.value = "Mot de passe sécurisé";
+    } else {
+      passwordInput.type = "password";
+      passwordInput.value = "********";
+    }
+  });
+
+  changePassBtn.addEventListener("click", async () => {
+    const user = auth.currentUser;
+    if (!user) {
+      alert("Veuillez vous connecter.");
+      return;
+    }
+    const newPass = prompt("Entrez votre nouveau mot de passe (6+ caractères) :");
+    if (!newPass || newPass.length < 6) {
+      alert("Le mot de passe doit contenir au moins 6 caractères.");
+      return;
+    }
+    try {
+      await user.updatePassword(newPass);
+      alert("Mot de passe mis à jour avec succès.");
+    } catch (error) {
+      if(error.code === 'auth/requires-recent-login') {
+        alert("Veuillez vous reconnecter avant de changer votre mot de passe.");
+      } else {
+        alert("Erreur lors de la mise à jour du mot de passe : " + error.message);
+      }
+    }
+  });
+
+  auth.onAuthStateChanged(user => {
+    if (!user) {
+      window.location.href = "s'inscrire.html";
+      return;
+    }
+
+    userEmailElem.textContent = user.email;
+    const date = user.metadata.creationTime ? new Date(user.metadata.creationTime) : null;
+    userCreatedElem.textContent = date ? date.toLocaleDateString() : "Inconnue";
+
+    db.collection("users").doc(user.uid).get()
+      .then(doc => {
+        if (doc.exists && doc.data().pseudo) {
+          userPseudoElem.textContent = doc.data().pseudo;
+        } else {
+          userPseudoElem.textContent = user.email.split("@")[0];
+        }
+      })
+      .catch(() => {
+        userPseudoElem.textContent = user.email.split("@")[0];
+      });
+
+    db.collection("payments").where("userId", "==", user.uid).orderBy("date", "desc").get()
+      .then(snapshot => {
+        if (snapshot.empty) {
+          noHistoryMsg.style.display = "block";
+          return;
+        }
+        noHistoryMsg.style.display = "none";
+        historyList.innerHTML = "";
+        snapshot.forEach(doc => {
+          const data = doc.data();
+          const date = data.date ? data.date.toDate().toLocaleDateString() : "Date inconnue";
+          const amount = data.amount ? data.amount.toFixed(2) + " €" : "Montant inconnu";
+          const plan = data.planName || "Abonnement";
+          const li = document.createElement("li");
+          li.textContent = `${date} - ${plan} - ${amount}`;
+          historyList.appendChild(li);
+        });
+      })
+      .catch(() => {
+        noHistoryMsg.style.display = "block";
+        noHistoryMsg.textContent = "Aucuns paiements.";
+      });
+  });
+</script>
+
+</body>
+</html>
