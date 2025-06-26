@@ -1,102 +1,577 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Toto Magicien - Maintenance</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TotoMagicien - Gagne avec style</title>
+<link rel="icon" href="/assets/logo_toto-removebg-preview.png" type="image/png" />
 
-    /* Remplace 'background.jpg' par le chemin de ton image */
-    body {
-      margin: 0;
-      height: 100vh;
-      font-family: 'Montserrat', sans-serif;
-      color: #fff;
-      background: url(/assets/bannieretoto.png) no-repeat center center fixed;
-      background-size: cover;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 20px;
-      box-sizing: border-box;
-      position: relative;
-      overflow: hidden;
-    }
+<link rel="stylesheet" href="style.css" />
+<link
+href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap"
+rel="stylesheet">
 
-    /* Overlay sombre pour rendre le texte lisible */
-    body::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.65);
-      z-index: 0;
-    }
+<script>
+const translations = {
+fr: {
+heroTitle: "Transforme tes pronos en revenus",
+heroDesc: "Rejoins TotoTM et accède à des analyses premium chaque jour.",
+voirAbos: "Voir les abonnements",
+offres: "Nos Offres",
+offre1: "Accès au pronostics pendant 24H",
+offre2: "Accès au pronostics pendant 1 semaine + analyse détaillée",
+offre3: "Accès complet + VIP group privé",
+temoignages: "Ils nous font confiance",
+contact: "Contacte-nous",
+placeholderName: "Ton blaze",
+placeholderEmail: "Ton e-mail",
+placeholderMessage: "Ton message",
+envoyer: "Envoyer"
+},
+en: {
+heroTitle: "Turn your predictions into income",
+heroDesc: "Join TotoTM and get daily premium analyses.",
+voirAbos: "See subscriptions",
+offres: "Our Offers",
+offre1: "Access to 1 tip/day",
+offre2: "3 tips/day + detailed analysis",
+offre3: "Full access + private VIP group",
+temoignages: "They trust us",
+contact: "Contact us",
+placeholderName: "Your name",
+placeholderEmail: "Your email",
+placeholderMessage: "Your message",
+envoyer: "Send"
+}
+};
+</script>
 
-    .container {
-      position: relative;
-      z-index: 1;
-      max-width: 600px;
-      padding: 40px 30px;
-      background: rgba(0, 0, 0, 0.5);
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.7);
-    }
+<style>
+:root {
+  --vert-gazon: #3b945e;
+  --rose-doux: #f78fb3;
+  --bg-clair: #f2f2f2;
+  --texte-fonce: #1e1e1e;
+}
 
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 0.5em;
-      font-weight: 700;
-      letter-spacing: 2px;
-    }
+body {
+  margin: 0;
+  font-family: 'Outfit', sans-serif;
+  background-color: var(--bg-clair);
+  color: var(--texte-fonce);
+}
 
-    .logo {
-      font-weight: 900;
-      font-size: 4rem;
-      color: #FFD700;
-      margin-bottom: 1em;
-      user-select: none;
-      text-transform: uppercase;
-      text-shadow: 0 0 8px #FFD700;
-      font-family: 'Montserrat', sans-serif;
-    }
+.top-annonce {
+  background-color: var(--rose-doux);
+  color: white;
+  text-align: center;
+  padding: 0.5rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
 
-    p {
-      font-size: 1.2rem;
-      line-height: 1.6;
-      margin-bottom: 1.5em;
-      color: #ddd;
-    }
+.top-annonce img {
+  height: 20px;
+  vertical-align: middle;
+}
 
-    footer {
-      font-size: 0.9rem;
-      opacity: 0.6;
-      user-select: none;
-    }
+header {
+  background-color: white;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transform: translateY(0);
+  transition: transform 0.3s ease;
+  display: flex;
+  justify-content: center;
+}
 
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 2rem;
-      }
-      .logo {
-        font-size: 2.8rem;
-      }
-      p {
-        font-size: 1rem;
-      }
-    }
-  </style>
+.container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  height: 40px;
+}
+
+.logo h1 span {
+  color: var(--vert-gazon);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--texte-fonce);
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+nav a:hover {
+  color: var(--rose-doux);
+  transform: scale(1.05);
+}
+
+.btn-login {
+  background-color: var(--vert-gazon);
+  color: white !important;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+.hero {
+  background: url('/assets/bannieretoto.png') no-repeat center/cover;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  text-align: center;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+  position: relative;
+  color: white;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.hero-content h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.btn-main {
+  background-color: var(--rose-doux);
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-main:hover {
+  transform: scale(1.05);
+  background-color: var(--vert-gazon);
+}
+
+.offres {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.offres h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.cards {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.card {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card button,
+.card a {
+  background-color: var(--vert-gazon);
+  color: white;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.card button:hover,
+.card a:hover {
+  background-color: var(--rose-doux);
+}
+
+.temoignages,
+.contact,
+footer {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+footer {
+  background-color: var(--vert-gazon);
+  color: white;
+}
+
+#pseudoWelcome {
+  position: fixed;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--vert-gazon);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-weight: 600;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  z-index: 1100;
+  font-family: 'Outfit', sans-serif;
+  user-select: none;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .cards {
+    flex-direction: column;
+    align-items: center;
+  }
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+  header .container {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .hero-content h2 {
+    font-size: 2rem;
+  }
+  .btn-main {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
+.price-box {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  transition: all 0.3s ease-in-out;
+  height: 24px;
+}
+
+.price-usd {
+  display: none;
+  color: #666;
+}
+
+.card:hover .price-eur {
+  display: none;
+}
+
+.card:hover .price-usd {
+  display: inline;
+}
+
+</style>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+rel="stylesheet">
 </head>
 <body>
+
+<!-- ✅ Barre d'annonce top header -->
+<div class="top-annonce">
+  <img src="/assets/fire-flame.gif" alt="Flamme">
+  -50% sur le premier mois VIP avec le code : <strong>TOTO50</strong>
+  <img src="/assets/fire-flame.gif" alt="Flamme">
+</div>
+
+<!-- ✅ Header principal -->
+<header>
   <div class="container">
-    <div class="logo">Toto Magicien</div>
-    <h1>Site en maintenance</h1>
-    <p>
-      Nous préparons la meilleure expérience de pronostics sportifs.<br />
-      Merci de votre patience, nous serons bientôt de retour.
-    </p>
-    <footer>© 2025 Toto Magicien - Tous droits réservés</footer>
+    <div class="logo">
+      <a href="index.html">
+        <img src="/assets/logo_toto-removebg-preview.png" alt="Logo" style="width: 110px; height: auto;">
+      </a>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#offres">Offres</a></li>
+        <li><a href="fiabilité.html">Fiabilité</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="propos.html">A propos</a></li>
+        <li id="menuMonCompte" style="display: none;"><a href="compte.html">Mon compte</a></li>
+      </ul>
+      <div id="logoutWrapper" style="display:none;">
+  <button onclick="logout()" style="background:#e74c3c; color:white; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">
+    Déconnexion
+  </button>
+</div>
+
+    </nav>
   </div>
+</header>
+
+<!-- ✅ Section Hero -->
+<section class="hero">
+  <div class="overlay"></div>
+  <div class="hero-content">
+    <h2>Transforme tes pronos en revenus</h2>
+    <p>Rejoins Toto et accède à des analyses premium chaque jour.</p>
+    <a href="s'inscrire.html" class="btn-main">S'inscrire/Se connecter</a>
+  </div>
+</section>
+
+<!-- ✅ Section Offres -->
+<section id="offres" class="offres">
+  <h2>Nos Offres</h2>
+  <div class="cards">
+    <div class="card">
+  <img src="/assets/STARTER.jpg" alt="Starter" style="width:100%; border-radius:10px; margin-bottom:15px;">
+  <div class="price-box">
+    <span class="price-eur">4,99 €</span>
+    <span class="price-usd">≈ $5,39</span>
+  </div>
+  <a href="#" class="subscribe-btn" data-link="https://buy.stripe.com/00waEYbl3dWI4M0fpmfbq02">💸 S’abonner</a>
+</div>
+
+<div class="card premium">
+  <img src="/assets/PREMIUM.jpg" alt="Premium" style="width:100%; border-radius:10px; margin-bottom:15px;">
+  <div class="price-box">
+    <span class="price-eur">19,99 €</span>
+    <span class="price-usd">≈ $21.59</span>
+  </div>
+  <a href="#" class="subscribe-btn" data-link="https://buy.stripe.com/3cI14o1Kt9GsfqEgtqfbq01">💸 S’abonner</a>
+</div>
+
+<div class="card">
+  <img src="/assets/VIP.jpg" alt="VIP" style="width:100%; border-radius:10px; margin-bottom:15px;">
+  <div class="price-box">
+    <span class="price-eur">34,99 €</span>
+    <span class="price-usd">≈ $37,45</span>
+  </div>
+  <a href="#" class="subscribe-btn" data-link="https://buy.stripe.com/fZu28s88RcSE92g3GEfbq00">💸 S’abonner</a>
+</div>
+
+<div class="card">
+  <img src="/assets/ebook1.png (1).png" alt="Dans la tête d'un bookmaker" style="width:100%; border-radius:10px; margin-bottom:15px;">
+  <div class="price-box">
+    <span class="price-eur">19,99 €</span>
+    <span class="price-usd">≈ $21,50</span>
+  </div>
+  <a href="#" class="subscribe-btn" data-link="https://buy.stripe.com/6oUcN6dtb8Co1zOcdafbq03">💸 S’abonner</a>
+</div>
+
+<div class="card">
+  <img src="" alt="test" style="width:100%; border-radius:10px; margin-bottom:15px;">
+  <div class="price-box">
+    <span class="price-eur">1,00€</span>
+    <span class="price-usd">≈ $2.00</span>
+  </div>
+  <a href="#" class="subscribe-btn" data-link="https://buy.stripe.com/7sY00k2Oxg4Q1zO2CAfbq04">💸 S’abonner</a>
+</div>
+
+
+<!-- ✅ Section Témoignages -->
+<section id="temoignages" class="temoignages">
+  <h2>Ils nous font confiance</h2>
+  <div class="avis">
+    <blockquote>“Depuis que je suis chez Toto, je fais +600€/mois. Franchement lourd !” – <strong>Walid B.</strong></blockquote>
+    <blockquote>“Les analyses sont propres, pas du blabla. C’est carré.” – <strong>Sarah K.</strong></blockquote>
+    <blockquote>“Le VIP vaut grave le coup. Groupe Telegram 🔥🔥🔥” – <strong>Mehdi L.</strong></blockquote>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2025 TotoMagicienTM. Tous droits réservés.</p>
+</footer>
+
+<!-- Overlay CGU obligatoire -->
+<div id="overlayCGV" style="
+position: fixed; top:0; left:0; width:100vw; height:100vh;
+background: rgba(0,0,0,0.95);
+backdrop-filter: blur(7px);
+display: flex; justify-content: center; align-items: center;
+z-index: 9999; color: #f78fb3; font-family: 'Arial', sans-serif;
+overflow-y: auto;
+">
+  <div style="
+  background: #111;
+  padding: 30px 40px;
+  border-radius: 20px;
+  max-width: 700px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 0 30px #f78fb3a0;
+  text-align: justify;
+  ">
+    <h2 style="text-align:center; margin-bottom: 25px; font-size: 28px;">Conditions Générales d’Utilisation (CGU)</h2>
+    <p>Bienvenue sur TotoMagicienTM. Avant de pénétrer dans notre univers magique, tu dois accepter nos règles du jeu :</p>
+    <h3>Article 1 : Objet</h3>
+    <p>Ces Conditions Générales régissent l’accès et l’utilisation de ce site web. En naviguant ici, tu acceptes de les respecter sans négociation.</p>
+    <h3>Article 2 : Acceptation</h3>
+    <p>Accepter ces CGU, c’est confirmer que tu es majeur, responsable, et que tu respecteras nos règles.</p>
+    <h3>Article 3 : Utilisation du site</h3>
+    <p>Tu t’engages à ne pas utiliser ce site pour des activités illégales, malveillantes, ou susceptibles de nuire à TotoMagicienTM ou à ses utilisateurs.</p>
+    <h3>Article 4 : Propriété intellectuelle</h3>
+    <p>Tout contenu, logo, texte, image sur ce site est la propriété exclusive de TotoMagicienTM. Toute reproduction sans accord est interdite.</p>
+    <h3>Article 5 : Responsabilité</h3>
+    <p>Nous déclinons toute responsabilité en cas de dommage lié à l’utilisation du site, sauf en cas de faute lourde de notre part.</p>
+    <h3>Article 6 : Données personnelles</h3>
+    <p>Tes données sont traitées selon notre politique de confidentialité. En acceptant, tu consens à leur collecte et traitement.</p>
+    <h3>Article 7 : Modifications des CGU</h3>
+    <p>Nous pouvons modifier ces CGU à tout moment, sans préavis. Ta consultation continue du site vaut acceptation des nouvelles conditions.</p>
+    <h3>Article 8 : Loi applicable</h3>
+    <p>Ces CGU sont soumises au droit français. Tout litige sera porté devant les tribunaux compétents.</p>
+    <p style="text-align:center; margin-top: 30px; font-weight: bold;">Pour continuer, tu dois accepter ces conditions.</p>
+    <div style="text-align:center; margin-top: 20px;">
+      <button id="btnAccept" style="
+      background: #f78fb3; color: #111; border:none; padding: 12px 28px; margin: 10px 15px;
+      border-radius: 30px; font-weight: bold; cursor: pointer; font-size: 16px;
+      ">J’accepte</button>
+      <button id="btnRefuse" style="
+      background: #aa1122; color: #fff; border:none; padding: 12px 28px; margin: 10px 15px;
+      border-radius: 30px; font-weight: bold; cursor: pointer; font-size: 16px;
+      ">Je refuse</button>
+    </div>
+  </div>
+</div>
+
+<!-- Message "Bonjour pseudo" -->
+<div id="pseudoWelcome" style="display:none;"></div>
+
+<script>
+  // Gestion overlay CGU
+  const overlay = document.getElementById('overlayCGV');
+  const btnAccept = document.getElementById('btnAccept');
+  const btnRefuse = document.getElementById('btnRefuse');
+
+  if (sessionStorage.getItem('cguAccepted') === 'true') {
+    overlay.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  } else {
+    overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  btnAccept.addEventListener('click', () => {
+    sessionStorage.setItem('cguAccepted', 'true');
+    overlay.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  });
+
+  btnRefuse.addEventListener('click', () => {
+    window.location.href = 'refus.html';
+  });
+
+ const pseudo = sessionStorage.getItem("pseudo");
+if (pseudo) {
+  // par exemple, insérer dans un élément avec un id spécifique
+  const pseudoWelcomeDiv = document.getElementById('pseudoWelcome');
+  if(pseudoWelcomeDiv){
+    pseudoWelcomeDiv.textContent = `Bonjour ${pseudo} 👋`;
+    pseudoWelcomeDiv.style.display = 'block';
+  } else {
+    // si tu n'as pas d'élément dédié, tu peux insérer directement dans body
+    document.body.insertAdjacentHTML('afterbegin', `<p style="text-align:center; font-weight:bold;">Bonjour ${pseudo} 👋</p>`);
+  }
+}
+
+
+  // Effet header qui disparaît au scroll vers le bas et revient au scroll vers le haut
+  let lastScrollTop = 0;
+  const header = document.querySelector('header');
+
+  window.addEventListener('scroll', () => {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (scrollTop > lastScrollTop && scrollTop > 100) {
+      // Scroll vers le bas : cacher le header
+      header.style.transform = 'translateY(-100%)';
+    } else {
+      // Scroll vers le haut : afficher le header
+      header.style.transform = 'translateY(0)';
+    }
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+  });
+  // Affiche le lien "Mon compte" si connecté
+if (pseudo) {
+  const menuCompte = document.getElementById("menuMonCompte");
+  if (menuCompte) menuCompte.style.display = "block";
+}
+function logout() {
+  sessionStorage.removeItem('pseudo');
+  location.reload();
+}
+const logoutWrapper = document.getElementById('logoutWrapper');
+if (pseudo) {
+  if (logoutWrapper) logoutWrapper.style.display = 'block';
+} else {
+  if (logoutWrapper) logoutWrapper.style.display = 'none';
+}
+
+
+
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll(".subscribe-btn").forEach(function(btn) {
+      btn.addEventListener("click", function(e) {
+        e.preventDefault();
+        var pseudo = sessionStorage.getItem("pseudo");
+        var payLink = btn.getAttribute("data-link");
+        if (!pseudo) {
+          // Pas connecté → redirige vers la page de connexion
+          window.location.href = "s'inscrire.html";
+        } else {
+          // Connecté → ouvre le lien Stripe dans un nouvel onglet
+          window.open(payLink, "_blank");
+        }
+      });
+    });
+  });
+</script>
+
 </body>
 </html>
