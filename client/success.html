@@ -1,107 +1,203 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Merci pour ton achat – TotoMagicien</title>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --vert-gazon: #3b945e;
-      --rose-doux: #f78fb3;
-      --bg-clair: #f9f9f9;
-      --texte-fonce: #1e1e1e;
-      --ombre: rgba(0, 0, 0, 0.08);
-    }
+  <meta charset="UTF-8">
+  <title>Accès Telegram | Validation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Google Font : Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js"></script>
 
+  <style>
     body {
       margin: 0;
-      font-family: 'Outfit', sans-serif;
-      background-color: var(--bg-clair);
-      color: var(--texte-fonce);
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #eef2f3, #f9f9f9);
       display: flex;
-      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       min-height: 100vh;
     }
 
-    header {
-      background-color: white;
-      padding: 1rem 2rem;
-      box-shadow: 0 2px 6px var(--ombre);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    header .logo img {
-      height: 50px;
-    }
-
-    main {
-      flex: 1;
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      max-width: 400px;
+      width: 90%;
       text-align: center;
-      padding: 3rem 1rem;
-      max-width: 800px;
-      margin: 0 auto;
     }
 
-    main h1 {
-      font-size: 2.5rem;
-      color: var(--vert-gazon);
-      margin-bottom: 1rem;
+    h1 {
+      margin-bottom: 10px;
+      font-size: 24px;
+      color: #222;
     }
 
-    main p {
-      font-size: 1.2rem;
+    p {
+      font-size: 15px;
       color: #444;
-      margin-bottom: 2.5rem;
     }
 
-    .btn-download {
-      display: inline-block;
-      background-color: var(--rose-doux);
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 14px;
+    }
+
+    button {
+      background-color: #4A90E2;
       color: white;
-      padding: 1rem 2.5rem;
-      border-radius: 40px;
-      font-weight: 700;
-      font-size: 1.1rem;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 16px;
+      width: 100%;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #357ABD;
+    }
+
+    .error, .success {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .error {
+      color: #E74C3C;
+    }
+
+    .success {
+      color: #2ECC71;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #telegram-link a {
+      display: inline-block;
+      margin-top: 15px;
+      color: #4A90E2;
       text-decoration: none;
-      transition: background-color 0.3s ease;
-    }
-
-    .btn-download:hover {
-      background-color: var(--vert-gazon);
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      background: #fff;
-      box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05);
       font-weight: 600;
-      color: #888;
+    }
+
+    #telegram-link a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <a href="index.html">
-        <img src="/assets/logo_toto-removebg-preview.png" alt="Logo TotoMagicien">
-      </a>
-    </div>
-    <a href="index.html" style="font-weight:600; text-decoration:none; color:#333;">Retour à l'accueil</a>
-  </header>
+  <div class="container">
+    <h1>Validation de l'accès Telegram</h1>
+    <p>Pack choisi : <strong id="pack-name">...</strong></p>
 
-  <main>
-    <h1>🎉 Merci pour ton achat !</h1>
-    <p>Tu peux dès maintenant télécharger ton eBook PDF<br><strong>🧠 Dans la Tête d’un Bookmaker – Gagner Sans Tricher</strong></p>
-    
-    <a href="/assets/🧠 Dans la Tête d’un Bookmaker – Gagner Sans Tricher.pdf" class="btn-download" download>Télécharger le PDF</a>
-  </main>
+    <form id="formTelegram">
+      <input type="text" id="telegram" placeholder="@VotrePseudoTelegram" required>
+      <button type="submit">Valider mon accès</button>
+    </form>
 
-  <footer>
-    © 2025 TotoMagicien™ – Les vrais gagnent avec la tête.
-  </footer>
+    <p id="message" class="error hidden"></p>
+    <p id="success" class="success hidden"></p>
+    <p id="telegram-link" class="hidden">🔗 <a id="link" href="#" target="_blank">Rejoindre le canal Telegram</a></p>
+  </div>
+
+  <script>
+    // ✅ Initialisation Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyBfx9vsqKsjg6aj86BGi0gy0DOHyqqTViU",
+      authDomain: "totomagicien-b6785.firebaseapp.com",
+      projectId: "totomagicien-b6785",
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    // ✅ Lecture du pack dans l'URL
+    const params = new URLSearchParams(window.location.search);
+    const pack = params.get("pack") || "Test";
+    document.getElementById("pack-name").innerText = pack;
+
+    const durations = {
+      "test": 1,
+      "starter": 1,
+      "premium": 7,
+      "vip": 30
+    };
+
+    const telegramLink = "https://t.me/+tonLienTelegram"; // 🔁 À personnaliser
+
+    document.getElementById("formTelegram").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const username = document.getElementById("telegram").value.trim();
+      const message = document.getElementById("message");
+      const success = document.getElementById("success");
+      const linkContainer = document.getElementById("telegram-link");
+
+      message.classList.add("hidden");
+      success.classList.add("hidden");
+      linkContainer.classList.add("hidden");
+
+      if (!username.startsWith("@") || username.length < 5) {
+        message.innerText = "Le pseudo doit commencer par @ et avoir au moins 5 caractères.";
+        return message.classList.remove("hidden");
+      }
+
+      // 🔍 Vérifie si pseudo déjà utilisé
+      const query = await db.collection("telegram-access")
+        .where("telegramUsername", "==", username)
+        .get();
+
+      if (!query.empty) {
+        message.innerText = "Ce pseudo est déjà utilisé.";
+        return message.classList.remove("hidden");
+      }
+
+      const now = new Date();
+      const days = durations[pack.toLowerCase()] || 1;
+      const accessEnd = new Date(now.getTime() + days * 24 * 60 * 60 * 1000);
+
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          const email = user.email;
+
+          db.collection("telegram-access").add({
+            telegramUsername: username,
+            Email: email,
+            Pack: pack.charAt(0).toUpperCase() + pack.slice(1),
+            accessStart: now,
+            accessEnd: accessEnd
+          }).then(() => {
+            success.innerText = "Accès validé avec succès !";
+            success.classList.remove("hidden");
+            document.getElementById("link").href = telegramLink;
+            linkContainer.classList.remove("hidden");
+          }).catch((err) => {
+            message.innerText = "Erreur : " + err.message;
+            message.classList.remove("hidden");
+          });
+
+        } else {
+          message.innerText = "Vous devez être connecté pour valider.";
+          message.classList.remove("hidden");
+        }
+      });
+    });
+  </script>
 </body>
 </html>
+
