@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Accès Telegram | Validation</title>
+  <title>Confirmation Email | Accès Telegram</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- Google Font : Poppins -->
@@ -46,15 +46,6 @@
       color: #444;
     }
 
-    input[type="text"] {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0 20px;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      font-size: 14px;
-    }
-
     button {
       background-color: #4A90E2;
       color: white;
@@ -65,6 +56,7 @@
       font-size: 16px;
       width: 100%;
       transition: background 0.3s;
+      margin-top: 20px;
     }
 
     button:hover {
@@ -103,13 +95,11 @@
 </head>
 <body>
   <div class="container">
-    <h1>Validation de l'accès Telegram</h1>
+    <h1>Confirmation Email</h1>
     <p>Pack choisi : <strong id="pack-name">...</strong></p>
+    <p>Appuie sur le bouton ci-dessous pour confirmer ton email et valider ton accès.</p>
 
-    <form id="formTelegram">
-      <input type="text" id="telegram" placeholder="@VotrePseudoTelegram" required>
-      <button type="submit">Valider mon accès</button>
-    </form>
+    <button id="validate">Confirmer mon email</button>
 
     <p id="message" class="error hidden"></p>
     <p id="success" class="success hidden"></p>
@@ -117,7 +107,7 @@
   </div>
 
   <script>
-    // ✅ Initialisation Firebase
+    // 🔧 Config Firebase
     const firebaseConfig = {
       apiKey: "AIzaSyBfx9vsqKsjg6aj86BGi0gy0DOHyqqTViU",
       authDomain: "totomagicien-b6785.firebaseapp.com",
@@ -127,7 +117,6 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    // ✅ Lecture du pack dans l'URL
     const params = new URLSearchParams(window.location.search);
     const pack = params.get("pack") || "Test";
     document.getElementById("pack-name").innerText = pack;
@@ -139,11 +128,9 @@
       "vip": 30
     };
 
-    const telegramLink = "https://t.me/+tonLienTelegram"; // 🔁 À personnaliser
+    const telegramLink = "https://t.me/+U5D6nrmqGRk5Mzc0"; // 🔁 Lien canal Telegram
 
-    document.getElementById("formTelegram").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const username = document.getElementById("telegram").value.trim();
+    document.getElementById("validate").addEventListener("click", () => {
       const message = document.getElementById("message");
       const success = document.getElementById("success");
       const linkContainer = document.getElementById("telegram-link");
@@ -152,37 +139,21 @@
       success.classList.add("hidden");
       linkContainer.classList.add("hidden");
 
-      if (!username.startsWith("@") || username.length < 5) {
-        message.innerText = "Le pseudo doit commencer par @ et avoir au moins 5 caractères.";
-        return message.classList.remove("hidden");
-      }
-
-      // 🔍 Vérifie si pseudo déjà utilisé
-      const query = await db.collection("telegram-access")
-        .where("telegramUsername", "==", username)
-        .get();
-
-      if (!query.empty) {
-        message.innerText = "Ce pseudo est déjà utilisé.";
-        return message.classList.remove("hidden");
-      }
-
       const now = new Date();
       const days = durations[pack.toLowerCase()] || 1;
       const accessEnd = new Date(now.getTime() + days * 24 * 60 * 60 * 1000);
 
       firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
+        if (user && user.email) {
           const email = user.email;
 
           db.collection("telegram-access").add({
-            telegramUsername: username,
             Email: email,
             Pack: pack.charAt(0).toUpperCase() + pack.slice(1),
             accessStart: now,
             accessEnd: accessEnd
           }).then(() => {
-            success.innerText = "Accès validé avec succès !";
+            success.innerText = "Ton email a bien été confirmé !";
             success.classList.remove("hidden");
             document.getElementById("link").href = telegramLink;
             linkContainer.classList.remove("hidden");
@@ -192,7 +163,7 @@
           });
 
         } else {
-          message.innerText = "Vous devez être connecté pour valider.";
+          message.innerText = "Tu dois être connecté avec ton email pour valider.";
           message.classList.remove("hidden");
         }
       });
@@ -200,4 +171,3 @@
   </script>
 </body>
 </html>
-
